@@ -1,4 +1,4 @@
-const game = require('./src/game.js');
+const game = require('../src/game.js');
 
 // describe('The test environment', function () {
 // 	it('should pass', function () {
