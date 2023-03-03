@@ -37,27 +37,22 @@ class Questions {
 		this.scienceQuestions = [];
 		this.sportsQuestions = [];
 	}
-	currentCategory (player) {
-		let rankPlayer = player.place;
-		if (rankPlayer == 0 || rankPlayer == 4 || rankPlayer == 8) {
-			return 'Pop';
-		}
-		if (rankPlayer == 1 || rankPlayer == 5 || rankPlayer == 9) {
-			return 'Science';
-		}
-		if (rankPlayer == 2 || rankPlayer == 6 || rankPlayer == 10) {
-			return 'Sports';
-		}
-		return 'Rock';
-	};
-	CreateQuestions () {
-		for (let i = 0; i < 50; i++) {
-			popQuestions.push('Pop Question ' + i);
-			scienceQuestions.push('Science Question ' + i);
-			sportsQuestions.push('Sports Question ' + i);
-			rockQuestions.push('Rock Question ' + i);
-		}
+
+	currentCategory(player) {
+		const categories = ['Pop', 'Science', 'Sports', 'Rock'];
+		return categories[player.place % 4];
 	}
+
+	createQuestions () {
+		for (let i = 0; i < 50; i++) {
+			this.popQuestions.push('Pop Question ' + i);
+			this.scienceQuestions.push('Science Question ' + i);
+			this.sportsQuestions.push('Sports Question ' + i);
+			this.rockQuestions.push('Rock Question ' + i);
+		}
+		return this.popQuestions.length == 50;
+	};
+	
 	askQuestion () {
 		if (this.currentCategory() == 'Pop') console.log(popQuestions.shift());
 		if (this.currentCategory() == 'Science') console.log(scienceQuestions.shift());

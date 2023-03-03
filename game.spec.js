@@ -61,4 +61,12 @@ describe('Test Questions', function () {
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Rock');
 	});
+
+	it('Implementation de CreateQuestions', function () {
+		let joueur = new game.Player('Sue');
+		joueur.place = 3;
+		let question = new game.Questions();
+		let result = question.createQuestions();
+		expect(result).toBe(true);
+	});
 });
