@@ -68,6 +68,7 @@ class Questions {
 		this.rockQuestions = [];
 		this.scienceQuestions = [];
 		this.sportsQuestions = [];
+		this.createQuestions();
 	}
 
 	currentCategory(player) {
@@ -82,7 +83,6 @@ class Questions {
 			this.sportsQuestions.push('Sports Question ' + i);
 			this.rockQuestions.push('Rock Question ' + i);
 		}
-		return this.popQuestions.length == 50;
 	}
 
 	askQuestion() {
@@ -274,6 +274,5 @@ class Questions {
 module.exports = {
 	Player,
 	Players,
-	Questions,
-	Game
+	Questions
 };

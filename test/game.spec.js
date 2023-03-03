@@ -1,4 +1,4 @@
-const game = require('./game.js');
+const game = require('./src/game.js');
 
 // describe('The test environment', function () {
 // 	it('should pass', function () {
@@ -46,13 +46,5 @@ describe('Test Questions', function () {
 		let question = new game.Questions();
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Rock');
-	});
-
-	it('Implementation de CreateQuestions', function () {
-		let joueur = new game.Player('Sue');
-		joueur.place = 3;
-		let question = new game.Questions();
-		let result = question.createQuestions();
-		expect(result).toBe(true);
 	});
 });
