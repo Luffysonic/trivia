@@ -1,14 +1,46 @@
 exports = typeof window !== 'undefined' && window !== null ? window : global;
 
-class Player {
+class IPlayer {
+	getName() {}
+	getPlace() {}
+	setPlace(place) {}
+	getPurse() {}
+	setPurse(purse) {}
+	isInPenaltyBox() {}
+	setInPenaltyBox() {}
+	releaseFromPenaltyBox() {}
+}
+class Player extends IPlayer {
 	constructor(PlayerName) {
+		super();
 		this.playerName = PlayerName;
 		this.place = 0;
 		this.purse = 0;
 		this.inPenaltyBox = false;
 	}
-	didPlayerWin() {
-		return this.purse === 6;
+	getName() {
+		return this.PlayerName;
+	}
+	getPlace() {
+		return this.place;
+	}
+	setPlace(place) {
+		this.place = place;
+	}
+	getPurse() {
+		return this.purse;
+	}
+	setPurse(purse) {
+		this.purse = purse;
+	}
+	isInPenaltyBox() {
+		return this.inPenaltyBox;
+	}
+	setInPenaltyBox() {
+		this.inPenaltyBox = true;
+	}
+	releaseFromPenaltyBox() {
+		this.inPenaltyBox = false;
 	}
 }
 
@@ -31,7 +63,7 @@ class Players {
 }
 
 class Questions {
-	constructor(){
+	constructor() {
 		this.popQuestions = [];
 		this.rockQuestions = [];
 		this.scienceQuestions = [];
@@ -40,10 +72,10 @@ class Questions {
 
 	currentCategory(player) {
 		const categories = ['Pop', 'Science', 'Sports', 'Rock'];
-		return categories[player.place % 4];
+		return categories[player.getPlace() % 4];
 	}
 
-	createQuestions () {
+	createQuestions() {
 		for (let i = 0; i < 50; i++) {
 			this.popQuestions.push('Pop Question ' + i);
 			this.scienceQuestions.push('Science Question ' + i);
@@ -51,15 +83,18 @@ class Questions {
 			this.rockQuestions.push('Rock Question ' + i);
 		}
 		return this.popQuestions.length == 50;
-	};
-	
-	askQuestion () {
+	}
+
+	askQuestion() {
 		if (this.currentCategory() == 'Pop') console.log(popQuestions.shift());
-		if (this.currentCategory() == 'Science') console.log(scienceQuestions.shift());
-		if (this.currentCategory() == 'Sports') console.log(sportsQuestions.shift());
+		if (this.currentCategory() == 'Science')
+			console.log(scienceQuestions.shift());
+		if (this.currentCategory() == 'Sports')
+			console.log(sportsQuestions.shift());
 		if (this.currentCategory() == 'Rock') console.log(rockQuestions.shift());
-	};
+	}
 }
+
 // exports.Game = function () {
 // 	var players = [];
 
@@ -239,5 +274,6 @@ class Questions {
 module.exports = {
 	Player,
 	Players,
-	Questions
+	Questions,
+	Game
 };
