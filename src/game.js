@@ -44,8 +44,13 @@ class Player extends IPlayer {
 	}
 }
 
-class Players {
+class IPlayers {
+	add() {}
+	howManyPlayers() {}
+}
+class Players extends IPlayers {
 	constructor() {
+		super();
 		this.Players = [];
 	}
 	add(playerName) {
@@ -62,12 +67,18 @@ class Players {
 	}
 }
 
-class Questions {
+class IQuestions {
+	currentCategory(player) {}
+	createQuestions() {}
+	askQuestion() {}
+}
+class Questions extends IQuestions {
+	popQuestions = [];
+	rockQuestions = [];
+	scienceQuestions = [];
+	sportsQuestions = [];
 	constructor() {
-		this.popQuestions = [];
-		this.rockQuestions = [];
-		this.scienceQuestions = [];
-		this.sportsQuestions = [];
+		super();
 		this.createQuestions();
 	}
 
