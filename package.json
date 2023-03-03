@@ -1,0 +1,22 @@
+{
+	"name": "trivia",
+	"version": "1.0.0",
+	"description": "TP Trivia",
+	"main": "game.js",
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Luffysonic/trivia.git"
+	},
+	"author": "Luffysonic,Gabou33140",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Luffysonic/trivia/issues"
+	},
+	"homepage": "https://github.com/Luffysonic/trivia#readme",
+	"devDependencies": {
+		"jest": "^29.4.3"
+	}
+}
