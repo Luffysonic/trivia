@@ -111,8 +111,8 @@ class Game {
 		this.players = [];
 		this.questions = new Questions()
 	}
-	isPlayable (howManyPlayers) {
-		return howManyPlayers >= 2;
+	isPlayable () {
+		return this.players.length>= 2;
 	};
 	add(playerName) {
 		let taille = this.players.length
@@ -120,9 +120,6 @@ class Game {
 		console.log(playerName + ' was added');
 		console.log('They are player number ' + this.players.length);
 		return taille+1 == this.players.length;
-	}
-	howManyPlayers() {
-		return this.players.length;
 	}
 }
 // let game = new Game();
