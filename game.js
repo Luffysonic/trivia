@@ -13,8 +13,8 @@ class Player {
 }
 
 class Players {
-	constructor(...Players) {
-		this.Players = Players;
+	constructor() {
+		this.Players = [];
 	}
 	add(playerName) {
 		this.Players.push(new Player(playerName));
@@ -30,6 +30,21 @@ class Players {
 	}
 }
 
+class Questions {
+	constructor(){
+		this.popQuestions = [];
+		this.rockQuestions = [];
+		this.scienceQuestions = [];
+		this.sportsQuestions = [];
+	}
+
+	askQuestion () {
+		if (currentCategory() == 'Pop') console.log(popQuestions.shift());
+		if (currentCategory() == 'Science') console.log(scienceQuestions.shift());
+		if (currentCategory() == 'Sports') console.log(sportsQuestions.shift());
+		if (currentCategory() == 'Rock') console.log(rockQuestions.shift());
+	};
+}
 // exports.Game = function () {
 // 	var players = [];
 
