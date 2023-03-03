@@ -19,7 +19,7 @@ class Player extends IPlayer {
 		this.inPenaltyBox = false;
 	}
 	getName() {
-		return this.PlayerName;
+		return this.playerName;
 	}
 	getPlace() {
 		return this.place;
@@ -106,6 +106,31 @@ class Questions extends IQuestions {
 	}
 }
 
+class Game {
+	constructor(){
+		this.players = [];
+		this.questions = new Questions()
+	}
+	isPlayable (howManyPlayers) {
+		return howManyPlayers >= 2;
+	};
+	add(playerName) {
+		let taille = this.players.length
+		this.players.push(new Player(playerName));
+		console.log(playerName + ' was added');
+		console.log('They are player number ' + this.players.length);
+		return taille+1 == this.players.length;
+	}
+	howManyPlayers() {
+		return this.players.length;
+	}
+}
+// let game = new Game();
+// // let player = new Player("gab");
+// // game.players.push(player);
+// game.add("gab");
+// console.log(game.players)
+// console.log(game.players[0].getName())
 // exports.Game = function () {
 // 	var players = [];
 
@@ -285,5 +310,6 @@ class Questions extends IQuestions {
 module.exports = {
 	Player,
 	Players,
-	Questions
+	Questions,
+	Game
 };
