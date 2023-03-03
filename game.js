@@ -1,5 +1,14 @@
 exports = typeof window !== 'undefined' && window !== null ? window : global;
 
+export class PlayerInfo {
+	constructor(PlayerName) {
+		this.playerName = PlayerName;
+		this.place = 0;
+		this.purse = 0;
+		this.inPenaltyBox = false;
+	}
+}
+
 exports.Game = function () {
 	var players = new Array();
 	var places = new Array(6);
