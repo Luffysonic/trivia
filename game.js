@@ -37,7 +37,27 @@ class Questions {
 		this.scienceQuestions = [];
 		this.sportsQuestions = [];
 	}
-
+	currentCategory (player) {
+		let rankPlayer = player.place;
+		if (rankPlayer == 0 || rankPlayer == 4 || rankPlayer == 8) {
+			return 'Pop';
+		}
+		if (rankPlayer == 1 || rankPlayer == 5 || rankPlayer == 9) {
+			return 'Science';
+		}
+		if (rankPlayer == 2 || rankPlayer == 6 || rankPlayer == 10) {
+			return 'Sports';
+		}
+		return 'Rock';
+	};
+	CreateQuestions () {
+		for (let i = 0; i < 50; i++) {
+			popQuestions.push('Pop Question ' + i);
+			scienceQuestions.push('Science Question ' + i);
+			sportsQuestions.push('Sports Question ' + i);
+			rockQuestions.push('Rock Question ' + i);
+		}
+	}
 	askQuestion () {
 		if (currentCategory() == 'Pop') console.log(popQuestions.shift());
 		if (currentCategory() == 'Science') console.log(scienceQuestions.shift());
@@ -74,15 +94,11 @@ class Questions {
 // 		return 'Rock';
 // 	};
 
-// 	this.createRockQuestion = function (index) {
-// 		return 'Rock Question ' + index;
-// 	};
-
 // 	for (var i = 0; i < 50; i++) {
 // 		popQuestions.push('Pop Question ' + i);
 // 		scienceQuestions.push('Science Question ' + i);
 // 		sportsQuestions.push('Sports Question ' + i);
-// 		rockQuestions.push(this.createRockQuestion(i));
+// 		rockQuestions.push(Rock Question ' + i);
 // 	}
 
 // 	this.isPlayable = function (howManyPlayers) {
