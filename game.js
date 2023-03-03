@@ -59,10 +59,10 @@ class Questions {
 		}
 	}
 	askQuestion () {
-		if (currentCategory() == 'Pop') console.log(popQuestions.shift());
-		if (currentCategory() == 'Science') console.log(scienceQuestions.shift());
-		if (currentCategory() == 'Sports') console.log(sportsQuestions.shift());
-		if (currentCategory() == 'Rock') console.log(rockQuestions.shift());
+		if (this.currentCategory() == 'Pop') console.log(popQuestions.shift());
+		if (this.currentCategory() == 'Science') console.log(scienceQuestions.shift());
+		if (this.currentCategory() == 'Sports') console.log(sportsQuestions.shift());
+		if (this.currentCategory() == 'Rock') console.log(rockQuestions.shift());
 	};
 }
 // exports.Game = function () {
@@ -243,5 +243,6 @@ class Questions {
 
 module.exports = {
 	Player,
-	Players
+	Players,
+	Questions
 };

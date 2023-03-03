@@ -32,3 +32,33 @@ describe('Test Players', function () {
 		expect(result).toBe(true);
 	});
 });
+
+describe('Test Questions', function () {
+	it('Implementation de currentCategory avec un player avec place = 0', function () {
+		let joueur = new game.Player('Sue');
+		let question = new game.Questions();
+		let result = question.currentCategory(joueur);
+		expect(result).toBe('Pop');
+	});
+	it('Implementation de currentCategory avec un player avec place = 1', function () {
+		let joueur = new game.Player('Sue');
+		joueur.place = 1;
+		let question = new game.Questions();
+		let result = question.currentCategory(joueur);
+		expect(result).toBe('Science');
+	});
+	it('Implementation de currentCategory avec un player avec place = 6', function () {
+		let joueur = new game.Player('Sue');
+		joueur.place = 6;
+		let question = new game.Questions();
+		let result = question.currentCategory(joueur);
+		expect(result).toBe('Sports');
+	});
+	it('Implementation de currentCategory avec un player avec place = 3', function () {
+		let joueur = new game.Player('Sue');
+		joueur.place = 3;
+		let question = new game.Questions();
+		let result = question.currentCategory(joueur);
+		expect(result).toBe('Rock');
+	});
+});
