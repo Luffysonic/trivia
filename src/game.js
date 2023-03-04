@@ -122,23 +122,9 @@ class Game {
 		this.getCurrentPlayer().setPlace(place);
 	}
 
-	determineifPlayerisGettingOutOfPenaltyBox(roll) {
-		if (roll % 2 != 0) {
-			this.getCurrentPlayer().releaseFromPenaltyBox();
-			console.log(
-				`${this.getCurrentPlayer().getName()}` +
-					' is getting out of the penalty box'
-			);
-		} else {
-			`${this.getCurrentPlayer().getName()}` +
-				' is not getting out of the penalty box';
-		}
-	}
-
 	updatePlayerPosition(roll) {
 		let currentPlayerPlace = this.getCurrentPlayerPlace();
 		currentPlayerPlace += roll;
-		console.log(currentPlayerPlace);
 		if (currentPlayerPlace > 11) {
 			currentPlayerPlace -= 12;
 			this.setCurrentPlayerPlace(currentPlayerPlace);
@@ -152,19 +138,40 @@ class Game {
 		);
 	}
 
+	determineifPlayerisGettingOutOfPenaltyBox(roll) {
+		if (roll % 2 != 0) {
+			this.getCurrentPlayer().releaseFromPenaltyBox();
+			console.log(
+				`${this.getCurrentPlayer().getName()}` +
+					' is getting out of the penalty box'
+			);
+			this.updatePlayerPosition(roll);
+		} else {
+			console.log(
+				`${this.getCurrentPlayer().getName()}` +
+					' is not getting out of the penalty box'
+			);
+		}
+	}
+
 	roll(roll) {
 		console.log(`${this.getCurrentPlayer().getName()} is the current player`);
 		console.log('They have rolled a ' + roll);
 		if (this.getCurrentPlayer().isInPenaltyBox()) {
 			this.determineifPlayerisGettingOutOfPenaltyBox(roll);
+		} else {
+			this.updatePlayerPosition(roll);
 		}
 	}
 }
 
-let game = new Game();
-game.add('Gabriel');
-game.players[0].setInPenaltyBox();
-game.updatePlayerPosition(3);
+// let game = new Game();
+// game.add('Gabriel');
+// game.getCurrentPlayer().setInPenaltyBox();
+// console.log(game.getCurrentPlayer().isInPenaltyBox());
+// game.determineifPlayerisGettingOutOfPenaltyBox(3);
+// console.log(game.getCurrentPlayerPlace());
+
 module.exports = {
 	Player,
 	Questions,

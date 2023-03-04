@@ -68,13 +68,23 @@ describe('Test Game', function () {
 		let result = gametest.getCurrentPlayer().isInPenaltyBox();
 		expect(result).toBe(false);
 	});
-	it("Vérification que le jeu n'autorise pas un joueur à quiter la penalty Zone", function () {
+	it("Vérification que le jeu n'autorise pas un joueur à quitter la penalty Zone", function () {
 		let gametest = new game.Game();
 		gametest.add('Gabriel');
 		gametest.players[0].setInPenaltyBox();
 		gametest.determineifPlayerisGettingOutOfPenaltyBox(2);
 		let result = gametest.getCurrentPlayer().isInPenaltyBox();
 		expect(result).toBe(true);
+	});
+	it('Vérification que le jeu autorise un joueur à quitter la penalty Zone et à avancer', function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.players[0].setInPenaltyBox();
+		gametest.determineifPlayerisGettingOutOfPenaltyBox(3);
+		let result = gametest.getCurrentPlayer().isInPenaltyBox();
+		let avancement = gametest.getCurrentPlayerPlace();
+		expect(result).toBe(false);
+		expect(avancement).toBe(3);
 	});
 	it('Vérification que le la maj de la position du joueur est bien effectué', function () {
 		let gametest = new game.Game();
@@ -86,8 +96,8 @@ describe('Test Game', function () {
 	it('Vérification que le la maj de la position du joueur est bien effectué cas spécial >11 ici 16', function () {
 		let gametest = new game.Game();
 		gametest.add('Gabriel');
-		gametest.setCurrentPlayerPlace(8);
-		gametest.updatePlayerPosition(8);
+		gametest.setCurrentPlayerPlace(10);
+		gametest.updatePlayerPosition(6);
 		let result = gametest.getCurrentPlayerPlace();
 		expect(result).toBe(4);
 	});
