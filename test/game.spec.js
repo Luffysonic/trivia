@@ -10,15 +10,6 @@ const game = require('../src/game.js');
 // 	});
 // });
 
-describe('Test Players', function () {
-	it('Vérification que le joueur a été ajouté dans le tableau', function () {
-		let players = new game.Players();
-		let result = players.add('Sue');
-		console.log(result);
-		expect(result).toBe(true);
-	});
-});
-
 describe('Test Questions', function () {
 	it('Implementation de currentCategory avec un player avec place = 0', function () {
 		let joueur = new game.Player('Sue');

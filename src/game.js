@@ -44,29 +44,6 @@ class Player extends IPlayer {
 	}
 }
 
-class IPlayers {
-	add() {}
-	howManyPlayers() {}
-}
-class Players extends IPlayers {
-	constructor() {
-		super();
-		this.Players = [];
-	}
-	add(playerName) {
-		this.Players.push(new Player(playerName));
-
-		console.log(playerName + ' was added');
-		console.log('They are player number ' + this.Players.length);
-
-		return true;
-	}
-
-	howManyPlayers() {
-		return this.Players.length;
-	}
-}
-
 class IQuestions {
 	currentCategory(player) {}
 	createQuestions() {}
@@ -110,11 +87,12 @@ class Game {
 	constructor() {
 		this.players = [];
 		this.questions = new Questions();
-		this.currentPlayer = 0;
 	}
+
 	isPlayable() {
 		return this.howManyPlayers() >= 2;
 	}
+
 	add(playerName) {
 		let PlayerNumber = this.players.length;
 		this.players.push(new Player(playerName));
@@ -122,6 +100,7 @@ class Game {
 		console.log('They are player number ' + this.players.length);
 		return PlayerNumber + 1 == this.players.length;
 	}
+
 	howManyPlayers() {
 		return this.players.length;
 	}
@@ -311,7 +290,6 @@ class Game {
 
 module.exports = {
 	Player,
-	Players,
 	Questions,
 	Game
 };
