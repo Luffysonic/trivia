@@ -125,6 +125,10 @@ class Game {
 		this.getCurrentPlayer().setPlace(place);
 	}
 
+	getCurrentPlayerPurse() {
+		return this.getCurrentPlayer().getPurse();
+	}
+
 	getCategory() {
 		return this.questions.currentCategory(this.getCurrentPlayer());
 	}
@@ -174,7 +178,20 @@ class Game {
 	}
 
 	didPlayerWin() {
-		return this.getCurrentPlayer().getPurse() === this.winningCondition;
+		return this.getCurrentPlayerPurse() === this.winningCondition;
+	}
+
+	wrongAnswer() {
+		console.log('Question was incorrectly answered');
+		console.log(
+			this.getCurrentPlayer().getName() + ' was sent to the penalty box'
+		);
+		this.getCurrentPlayer().setInPenaltyBox();
+		this.currentPlayerIndex++;
+		if (this.currentPlayerIndex == this.players.length) {
+			this.currentPlayerIndex = 0;
+		}
+		return true;
 	}
 }
 
