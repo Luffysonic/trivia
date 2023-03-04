@@ -73,13 +73,15 @@ class Questions extends IQuestions {
 		}
 	}
 
-	askQuestion() {
-		if (this.currentCategory() == 'Pop') console.log(popQuestions.shift());
-		if (this.currentCategory() == 'Science')
-			console.log(scienceQuestions.shift());
-		if (this.currentCategory() == 'Sports')
-			console.log(sportsQuestions.shift());
-		if (this.currentCategory() == 'Rock') console.log(rockQuestions.shift());
+	askQuestion(player) {
+		if (this.currentCategory(player) == 'Pop')
+			console.log(this.popQuestions.shift());
+		if (this.currentCategory(player) == 'Science')
+			console.log(this.scienceQuestions.shift());
+		if (this.currentCategory(player) == 'Sports')
+			console.log(this.sportsQuestions.shift());
+		if (this.currentCategory(player) == 'Rock')
+			console.log(this.rockQuestions.shift());
 	}
 }
 
@@ -122,6 +124,10 @@ class Game {
 		this.getCurrentPlayer().setPlace(place);
 	}
 
+	getCategory() {
+		return this.questions.currentCategory(this.getCurrentPlayer());
+	}
+
 	updatePlayerPosition(roll) {
 		let currentPlayerPlace = this.getCurrentPlayerPlace();
 		currentPlayerPlace += roll;
@@ -162,16 +168,15 @@ class Game {
 		} else {
 			this.updatePlayerPosition(roll);
 		}
+		console.log('The category is :' + this.getCategory());
+		this.questions.askQuestion(this.getCurrentPlayer());
 	}
 }
 
-// let game = new Game();
-// game.add('Gabriel');
-// game.getCurrentPlayer().setInPenaltyBox();
-// console.log(game.getCurrentPlayer().isInPenaltyBox());
-// game.determineifPlayerisGettingOutOfPenaltyBox(3);
-// console.log(game.getCurrentPlayerPlace());
-
+let game = new Game();
+game.add('Gabriel');
+game.roll(3);
+game.roll(4);
 module.exports = {
 	Player,
 	Questions,

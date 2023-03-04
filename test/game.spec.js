@@ -101,4 +101,24 @@ describe('Test Game', function () {
 		let result = gametest.getCurrentPlayerPlace();
 		expect(result).toBe(4);
 	});
+	it('Vérification que le roll avec un joueur en penalty box mais y reste', function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setInPenaltyBox();
+		gametest.roll(2);
+		let inPenaltyBox = gametest.getCurrentPlayer().isInPenaltyBox();
+		let place = gametest.getCurrentPlayerPlace();
+		expect(inPenaltyBox).toBe(true);
+		expect(place).toBe(0);
+	});
+	it('Vérification que le roll avec un joueur en penalty box mais y sort', function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setInPenaltyBox();
+		gametest.roll(5);
+		let inPenaltyBox = gametest.getCurrentPlayer().isInPenaltyBox();
+		let place = gametest.getCurrentPlayerPlace();
+		expect(inPenaltyBox).toBe(false);
+		expect(place).toBe(5);
+	});
 });
