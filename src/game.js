@@ -90,7 +90,6 @@ class Game {
 	}
 	currentPlayerIndex = 0;
 	purses = [];
-	places = [];
 
 	isPlayable() {
 		return this.howManyPlayers() >= 2;
@@ -116,10 +115,13 @@ class Game {
 	setcurrentPlayerIndex(index) {
 		this.currentPlayerIndex = index;
 	}
-
-	getcurrentPlayerPlace() {
-		return this.places[this.getCurrentPlayerIndex()];
+	getCurrentPlayerPlace() {
+		return this.getCurrentPlayer().getPlace();
 	}
+	setCurrentPlayerPlace(place) {
+		this.getCurrentPlayer().setPlace(place);
+	}
+
 	determineifPlayerisGettingOutOfPenaltyBox(roll) {
 		if (roll % 2 != 0) {
 			this.getCurrentPlayer().releaseFromPenaltyBox();
@@ -132,14 +134,37 @@ class Game {
 				' is not getting out of the penalty box';
 		}
 	}
+
+	updatePlayerPosition(roll) {
+		let currentPlayerPlace = this.getCurrentPlayerPlace();
+		currentPlayerPlace += roll;
+		console.log(currentPlayerPlace);
+		if (currentPlayerPlace > 11) {
+			currentPlayerPlace -= 12;
+			this.setCurrentPlayerPlace(currentPlayerPlace);
+		} else {
+			this.setCurrentPlayerPlace(currentPlayerPlace);
+		}
+		console.log(
+			this.getCurrentPlayer().getName() +
+				"'s new location is " +
+				this.getCurrentPlayer().getPlace()
+		);
+	}
+
+	roll(roll) {
+		console.log(`${this.getCurrentPlayer().getName()} is the current player`);
+		console.log('They have rolled a ' + roll);
+		if (this.getCurrentPlayer().isInPenaltyBox()) {
+			this.determineifPlayerisGettingOutOfPenaltyBox(roll);
+		}
+	}
 }
 
 let game = new Game();
 game.add('Gabriel');
 game.players[0].setInPenaltyBox();
-console.log(game.getCurrentPlayer());
-game.determineifPlayerisGettingOutOfPenaltyBox(3);
-console.log(game.getCurrentPlayer());
+game.updatePlayerPosition(3);
 module.exports = {
 	Player,
 	Questions,
