@@ -19,21 +19,21 @@ describe('Test Questions', function () {
 	});
 	it('Implementation de currentCategory avec un player avec place = 1', function () {
 		let joueur = new game.Player('Sue');
-		joueur.place = 1;
+		joueur.setPlace(1);
 		let question = new game.Questions();
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Science');
 	});
 	it('Implementation de currentCategory avec un player avec place = 6', function () {
 		let joueur = new game.Player('Sue');
-		joueur.place = 6;
+		joueur.setPlace(6);
 		let question = new game.Questions();
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Sports');
 	});
 	it('Implementation de currentCategory avec un player avec place = 3', function () {
 		let joueur = new game.Player('Sue');
-		joueur.place = 3;
+		joueur.setPlace(3);
 		let question = new game.Questions();
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Rock');
@@ -58,5 +58,21 @@ describe('Test Game', function () {
 
 		let result = gametest.isPlayable();
 		expect(result).toBe(false);
+	});
+	it('Vérification que le jeu autorise un joueur à quiter la penalty Zone', function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.players[0].setInPenaltyBox();
+		gametest.determineifPlayerisGettingOutOfPenaltyBox(3);
+		let result = gametest.getCurrentPlayer().isInPenaltyBox();
+		expect(result).toBe(false);
+	});
+	it("Vérification que le jeu n'autorise pas un joueur à quiter la penalty Zone", function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.players[0].setInPenaltyBox();
+		gametest.determineifPlayerisGettingOutOfPenaltyBox(2);
+		let result = gametest.getCurrentPlayer().isInPenaltyBox();
+		expect(result).toBe(true);
 	});
 });
