@@ -92,6 +92,7 @@ class Game {
 	}
 	currentPlayerIndex = 0;
 	purses = [];
+	winningCondition = 6;
 
 	isPlayable() {
 		return this.howManyPlayers() >= 2;
@@ -171,11 +172,18 @@ class Game {
 		console.log('The category is :' + this.getCategory());
 		this.questions.askQuestion(this.getCurrentPlayer());
 	}
+
+	didPlayerWin() {
+		return this.getCurrentPlayer().getPurse() === this.winningCondition;
+	}
 }
 
-let game = new Game();
-game.add('Gabriel');
-game.roll(10);
+// let game = new Game();
+// game.add('Gabriel');
+// game.roll(10);
+// game.getCurrentPlayer().setPurse(6);
+// console.log(game.getCurrentPlayer());
+// console.log(game.didPlayerWin());
 
 module.exports = {
 	Player,

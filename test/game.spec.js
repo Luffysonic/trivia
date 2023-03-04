@@ -149,4 +149,18 @@ describe('Test Game', function () {
 		category = gametest.getCategory();
 		expect(category).toBe('Rock');
 	});
+	it('Vérification que le joueur gagné à 6 purses', function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setPurse(6);
+		let Win = gametest.didPlayerWin();
+		expect(Win).toBe(true);
+	});
+	it("Vérification que le joueur n'a gagné à 4 purses", function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setPurse(4);
+		let Win = gametest.didPlayerWin();
+		expect(Win).toBe(false);
+	});
 });
