@@ -175,8 +175,8 @@ class Game {
 
 let game = new Game();
 game.add('Gabriel');
-game.roll(3);
-game.roll(4);
+game.roll(10);
+
 module.exports = {
 	Player,
 	Questions,

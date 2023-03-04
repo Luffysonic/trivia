@@ -1,14 +1,14 @@
 const game = require('../src/game.js');
 
-// describe('The test environment', function () {
-// 	it('should pass', function () {
-// 		expect(true).toBe(true);
-// 	});
+describe('The test environment', function () {
+	it('should pass', function () {
+		expect(true).toBe(true);
+	});
 
-// 	it('should access game', function () {
-// 		expect(Game).toBeDefined();
-// 	});
-// });
+	it('should access game', function () {
+		expect(game).toBeDefined();
+	});
+});
 
 describe('Test Questions', function () {
 	it('Implementation de currentCategory avec un player avec place = 0', function () {
@@ -120,5 +120,33 @@ describe('Test Game', function () {
 		let place = gametest.getCurrentPlayerPlace();
 		expect(inPenaltyBox).toBe(false);
 		expect(place).toBe(5);
+	});
+	it('Vérification que le roll avec un joueur qui roll a une catégorie Pop', function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.roll(0);
+		category = gametest.getCategory();
+		expect(category).toBe('Pop');
+	});
+	it('Vérification que le roll avec un joueur qui roll a une catégorie Science', function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.roll(5);
+		category = gametest.getCategory();
+		expect(category).toBe('Science');
+	});
+	it('Vérification que le roll avec un joueur qui roll a une catégorie Sports', function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.roll(10);
+		category = gametest.getCategory();
+		expect(category).toBe('Sports');
+	});
+	it('Vérification que le roll avec un joueur qui roll a une catégorie Rock', function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.roll(3);
+		category = gametest.getCategory();
+		expect(category).toBe('Rock');
 	});
 });
