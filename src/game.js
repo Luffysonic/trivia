@@ -157,11 +157,13 @@ class Game {
 					' is getting out of the penalty box'
 			);
 			this.updatePlayerPosition(roll);
+			return true;
 		} else {
 			console.log(
 				`${this.getCurrentPlayer().getName()}` +
 					' is not getting out of the penalty box'
 			);
+			return false;
 		}
 	}
 
@@ -192,6 +194,11 @@ class Game {
 			this.currentPlayerIndex = 0;
 		}
 		return true;
+	}
+
+	wasCorrectlyAnswered() {
+		if (this.getCurrentPlayer().isInPenaltyBox) {
+		}
 	}
 }
 
