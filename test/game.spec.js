@@ -163,4 +163,28 @@ describe('Test Game', function () {
 		let Win = gametest.didPlayerWin();
 		expect(Win).toBe(false);
 	});
+
+	it("Vérification que si le joueur a mal répondu envoie dans penaltyBox et qu'on est au prochain joueur", function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.add('Gabriel');
+
+		gametest.wrongAnswer();
+		let inPenaltyBox = gametest.players[0].isInPenaltyBox();
+		let currentPlayerName = gametest.getCurrentPlayer().getName();
+		expect(inPenaltyBox).toBe(true);
+		expect(currentPlayerName).toBe('Gabriel');
+	});
+
+	it("Vérification que si le joueur a mal répondu envoie dans penaltyBox et qu'on est au prochain joueur cas reviens sur premier", function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.add('Gabriel');
+		gametest.currentPlayerIndex = 1;
+		gametest.wrongAnswer();
+		let inPenaltyBox = gametest.players[1].isInPenaltyBox();
+		let currentPlayerName = gametest.getCurrentPlayer().getName();
+		expect(inPenaltyBox).toBe(true);
+		expect(currentPlayerName).toBe('Ricky');
+	});
 });
