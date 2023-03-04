@@ -48,3 +48,24 @@ describe('Test Questions', function () {
 		expect(result).toBe('Rock');
 	});
 });
+describe('Test Game', function () {
+	it('Vérification que le jeu ajoute bien un joueur', function () {
+		let gametest = new game.Game();
+		let result = gametest.add('Gabriel');
+		expect(result).toBe(true);
+	});
+	it('Vérification que le jeu est jouable', function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+		gametest.add('Ricky');
+		let result = gametest.isPlayable();
+		expect(result).toBe(true);
+	});
+	it("Vérification que le jeu n'est pas jouable", function () {
+		let gametest = new game.Game();
+		gametest.add('Gabriel');
+
+		let result = gametest.isPlayable();
+		expect(result).toBe(false);
+	});
+});

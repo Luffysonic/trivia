@@ -63,7 +63,7 @@ class Players extends IPlayers {
 	}
 
 	howManyPlayers() {
-		return players.length;
+		return this.Players.length;
 	}
 }
 
@@ -107,21 +107,26 @@ class Questions extends IQuestions {
 }
 
 class Game {
-	constructor(){
+	constructor() {
 		this.players = [];
-		this.questions = new Questions()
+		this.questions = new Questions();
+		this.currentPlayer = 0;
 	}
-	isPlayable () {
-		return this.players.length>= 2;
-	};
+	isPlayable() {
+		return this.howManyPlayers() >= 2;
+	}
 	add(playerName) {
-		let taille = this.players.length
+		let PlayerNumber = this.players.length;
 		this.players.push(new Player(playerName));
 		console.log(playerName + ' was added');
 		console.log('They are player number ' + this.players.length);
-		return taille+1 == this.players.length;
+		return PlayerNumber + 1 == this.players.length;
+	}
+	howManyPlayers() {
+		return this.players.length;
 	}
 }
+
 // let game = new Game();
 // // let player = new Player("gab");
 // // game.players.push(player);
