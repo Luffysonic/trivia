@@ -36,9 +36,9 @@ pour lancer l'application.
 
 ## Stack
 
--  ![javasccript]
--  ![jest]
--  ![nodejs]
+-  ![javasccript](https://img.shields.io/badge/JavaScript-ES6+-yellow?style=for-the-badge&logo=javascript)
+-  ![jest](https://img.shields.io/badge/Jest-24.9.0-yellowgreen?style=for-the-badge&logo=jest)
+-  ![nodejs](https://img.shields.io/badge/Node.js-v14.17.5-green?style=for-the-badge&logo=node.js)
 
 ## To do List
 
