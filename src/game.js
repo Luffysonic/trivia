@@ -189,11 +189,15 @@ class Game {
 			this.getCurrentPlayer().getName() + ' was sent to the penalty box'
 		);
 		this.getCurrentPlayer().setInPenaltyBox();
+		this.NextPlayer();
+		return true;
+	}
+
+	NextPlayer() {
 		this.currentPlayerIndex++;
 		if (this.currentPlayerIndex == this.players.length) {
 			this.currentPlayerIndex = 0;
 		}
-		return true;
 	}
 
 	wasCorrectlyAnswered() {
@@ -202,12 +206,19 @@ class Game {
 	}
 }
 
-// let game = new Game();
-// game.add('Gabriel');
-// game.roll(10);
-// game.getCurrentPlayer().setPurse(6);
-// console.log(game.getCurrentPlayer());
-// console.log(game.didPlayerWin());
+let game = new Game();
+
+game.add('Ricky');
+game.add('Gabriel');
+console.log(game.getCurrentPlayer().getName());
+console.log(game.NextPlayer());
+console.log(game.getCurrentPlayer().getName());
+console.log(game.NextPlayer());
+console.log(game.getCurrentPlayer().getName());
+console.log(game.NextPlayer());
+console.log(game.getCurrentPlayer().getName());
+console.log(game.NextPlayer());
+console.log(game.getCurrentPlayer().getName());
 
 module.exports = {
 	Player,
