@@ -1,6 +1,7 @@
 const game = require('../src/game.js');
 const questions = require('../src/questions');
 const player = require('../src/player');
+const Category = require('../src/category');
 
 describe('The test environment', function () {
 	it('should pass', function () {
@@ -12,13 +13,38 @@ describe('The test environment', function () {
 	});
 });
 
+describe('Test Category', function () {
+	it('Vérification de la création de la catégorie', function () {
+		//Arrage
+		let categorie = new Category.Category('Geography', 10);
+		//Act
+		let categorieName = categorie.name;
+		//Assert
+		expect(categorieName).toBe('Geography');
+	});
+
+	it('Vérification de getQuestion', function () {
+		//Arrage
+		let categorie = new Category.Category('Geography', 10);
+		//Act
+		let Question = categorie.getQuestion();
+		//Assert
+		let result_expected = 'Geography Question 0';
+		expect(Question).toBe(result_expected);
+	});
+});
+
 describe('Test Questions', function () {
 	it('Implementation de currentCategory avec un player avec place = 0', function () {
+		//Arrage
 		let joueur = new player.Player('Sue');
 		let question = new questions.Questions();
+		//Act
 		let CurrentCategoryName = question.currentCategoryName(joueur);
+		//Assert
 		expect(CurrentCategoryName).toBe('Pop');
 	});
+
 	it('Implementation de currentCategory avec un player avec place = 1', function () {
 		let joueur = new player.Player('Sue');
 		joueur.setPlace(1);

@@ -5,7 +5,8 @@
 	"main": "game.js",
 	"scripts": {
 		"test": "jest",
-		"prettier": "prettier --write ."
+		"prettier": "prettier --write .",
+		"dev": "node ./src/gameExecution.js"
 	},
 	"repository": {
 		"type": "git",
