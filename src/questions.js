@@ -16,11 +16,13 @@ class Questions extends IQuestions {
 	}
 
 	currentCategory(player) {
-		return this.categories[player.getPlace() % 4];
+		return this.categories[player.getPlace() % this.categories.length];
 	}
 
 	currentCategoryName(player) {
-		return this.categories[player.getPlace() % 4].getName();
+		return this.categories[
+			player.getPlace() % this.categories.length
+		].getName();
 	}
 
 	askQuestion(player) {
