@@ -208,31 +208,38 @@ class Game {
 	}
 
 	wasCorrectlyAnswered() {
+		let currentPlayer = this.getCurrentPlayer();
+		let isPlayerInPenaltyBox = currentPlayer.isInPenaltyBox();
+		let isGettingOutOfPenaltyBox = this.isGettingOutOfPenaltyBox;
 		let winner;
-		if (this.getCurrentPlayer().isInPenaltyBox()) {
-			if (this.isGettingOutOfPenaltyBox) {
+
+		if (isPlayerInPenaltyBox) {
+			if (isGettingOutOfPenaltyBox) {
 				console.log('Answer was correct!!!!');
-				this.getCurrentPlayer().addPurse();
+				currentPlayer.addPurse();
 				console.log(
-					`${this.getCurrentPlayer().getName()} now has ${this.getCurrentPlayer().getPurse()} Gold Coins.`
+					`${currentPlayer.getName()} now has ${currentPlayer.getPurse()} Gold Coins.`
 				);
-				winner = this.didPlayerWin();
-				this.NextPlayer();
-				return winner;
 			} else {
+				console.log(
+					`${currentPlayer.getName()} is not getting out of the penalty box`
+				);
 				this.NextPlayer();
+
 				return true;
 			}
 		} else {
 			console.log('Answer was correct!!!!');
-			this.getCurrentPlayer().addPurse();
+			currentPlayer.addPurse();
 			console.log(
-				`${this.getCurrentPlayer().getName()} now has ${this.getCurrentPlayer().getPurse()} Gold Coins.`
+				`${currentPlayer.getName()} now has ${currentPlayer.getPurse()} Gold Coins.`
 			);
-			winner = this.didPlayerWin();
-			this.NextPlayer();
-			return winner;
 		}
+
+		winner = this.didPlayerWin();
+		this.NextPlayer();
+
+		return winner;
 	}
 }
 let game = new Game();
@@ -240,9 +247,10 @@ let game = new Game();
 game.add('Ricky');
 game.add('Gabriel');
 game.getCurrentPlayer().setInPenaltyBox();
-game.isGettingOutOfPenaltyBox = true;
+game.isGettingOutOfPenaltyBox = false;
 game.wasCorrectlyAnswered();
 console.log(game.players[0].getPurse());
+console.log(game.getCurrentPlayer());
 
 module.exports = {
 	Player,
