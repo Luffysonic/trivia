@@ -1,4 +1,6 @@
 const game = require('../src/game.js');
+const questions = require('../src/questions');
+const player = require('../src/player');
 
 describe('The test environment', function () {
 	it('should pass', function () {
@@ -12,33 +14,34 @@ describe('The test environment', function () {
 
 describe('Test Questions', function () {
 	it('Implementation de currentCategory avec un player avec place = 0', function () {
-		let joueur = new game.Player('Sue');
-		let question = new game.Questions();
+		let joueur = new player.Player('Sue');
+		let question = new questions.Questions();
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Pop');
 	});
 	it('Implementation de currentCategory avec un player avec place = 1', function () {
-		let joueur = new game.Player('Sue');
+		let joueur = new player.Player('Sue');
 		joueur.setPlace(1);
-		let question = new game.Questions();
+		let question = new questions.Questions();
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Science');
 	});
 	it('Implementation de currentCategory avec un player avec place = 6', function () {
-		let joueur = new game.Player('Sue');
+		let joueur = new player.Player('Sue');
 		joueur.setPlace(6);
-		let question = new game.Questions();
+		let question = new questions.Questions();
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Sports');
 	});
 	it('Implementation de currentCategory avec un player avec place = 3', function () {
-		let joueur = new game.Player('Sue');
+		let joueur = new player.Player('Sue');
 		joueur.setPlace(3);
-		let question = new game.Questions();
+		let question = new questions.Questions();
 		let result = question.currentCategory(joueur);
 		expect(result).toBe('Rock');
 	});
 });
+
 describe('Test Game', function () {
 	it('Vérification que le jeu ajoute bien un joueur', function () {
 		let gametest = new game.Game();
