@@ -16,29 +16,29 @@ describe('Test Questions', function () {
 	it('Implementation de currentCategory avec un player avec place = 0', function () {
 		let joueur = new player.Player('Sue');
 		let question = new questions.Questions();
-		let result = question.currentCategory(joueur);
-		expect(result).toBe('Pop');
+		let CurrentCategoryName = question.currentCategoryName(joueur);
+		expect(CurrentCategoryName).toBe('Pop');
 	});
 	it('Implementation de currentCategory avec un player avec place = 1', function () {
 		let joueur = new player.Player('Sue');
 		joueur.setPlace(1);
 		let question = new questions.Questions();
-		let result = question.currentCategory(joueur);
-		expect(result).toBe('Science');
+		let CurrentCategoryName = question.currentCategoryName(joueur);
+		expect(CurrentCategoryName).toBe('Science');
 	});
 	it('Implementation de currentCategory avec un player avec place = 6', function () {
 		let joueur = new player.Player('Sue');
 		joueur.setPlace(6);
 		let question = new questions.Questions();
-		let result = question.currentCategory(joueur);
-		expect(result).toBe('Sports');
+		let CurrentCategoryName = question.currentCategoryName(joueur);
+		expect(CurrentCategoryName).toBe('Sports');
 	});
 	it('Implementation de currentCategory avec un player avec place = 3', function () {
 		let joueur = new player.Player('Sue');
 		joueur.setPlace(3);
 		let question = new questions.Questions();
-		let result = question.currentCategory(joueur);
-		expect(result).toBe('Rock');
+		let CurrentCategoryName = question.currentCategoryName(joueur);
+		expect(CurrentCategoryName).toBe('Rock');
 	});
 });
 

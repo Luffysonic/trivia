@@ -1,43 +1,34 @@
+const category = require('./category');
 class IQuestions {
 	currentCategory(player) {}
 	createQuestions() {}
 	askQuestion() {}
 }
 class Questions extends IQuestions {
-	popQuestions = [];
-	rockQuestions = [];
-	scienceQuestions = [];
-	sportsQuestions = [];
 	constructor() {
 		super();
-		this.createQuestions();
+		this.categories = [
+			new category.Category('Pop', 50),
+			new category.Category('Science', 50),
+			new category.Category('Sports', 50),
+			new category.Category('Rock', 50)
+		];
 	}
 
 	currentCategory(player) {
-		const categories = ['Pop', 'Science', 'Sports', 'Rock'];
-		return categories[player.getPlace() % 4];
+		return this.categories[player.getPlace() % 4];
 	}
 
-	createQuestions() {
-		for (let i = 0; i < 50; i++) {
-			this.popQuestions.push('Pop Question ' + i);
-			this.scienceQuestions.push('Science Question ' + i);
-			this.sportsQuestions.push('Sports Question ' + i);
-			this.rockQuestions.push('Rock Question ' + i);
-		}
+	currentCategoryName(player) {
+		return this.categories[player.getPlace() % 4].getName();
 	}
 
 	askQuestion(player) {
-		if (this.currentCategory(player) == 'Pop')
-			console.log(this.popQuestions.shift());
-		if (this.currentCategory(player) == 'Science')
-			console.log(this.scienceQuestions.shift());
-		if (this.currentCategory(player) == 'Sports')
-			console.log(this.sportsQuestions.shift());
-		if (this.currentCategory(player) == 'Rock')
-			console.log(this.rockQuestions.shift());
+		const category = this.currentCategory(player);
+		console.log(category.getQuestion());
 	}
 }
+
 module.exports = {
 	Questions,
 	IQuestions

@@ -48,7 +48,7 @@ class Game {
 	}
 
 	getCategory() {
-		return this.questions.currentCategory(this.getCurrentPlayer());
+		return this.questions.currentCategoryName(this.getCurrentPlayer());
 	}
 
 	updatePlayerPosition(roll) {
