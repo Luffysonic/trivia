@@ -16,7 +16,7 @@ class Game {
 		return this.howManyPlayers() >= 2;
 	}
 
-	add(playerName) {
+	addPlayer(playerName) {
 		let PlayerNumber = this.players.length;
 		this.players.push(new player.Player(playerName));
 		console.log(playerName + ' was added');
@@ -99,8 +99,8 @@ class Game {
 		this.questions.askQuestion(this.getCurrentPlayer());
 	}
 
-	didPlayerWin() {
-		return this.getCurrentPlayerPurse() === this.winningCondition;
+	didPlayerNotWin() {
+		return !(this.getCurrentPlayerPurse() === this.winningCondition);
 	}
 
 	wrongAnswer() {
@@ -149,21 +149,29 @@ class Game {
 			);
 		}
 
-		winner = this.didPlayerWin();
+		winner = this.didPlayerNotWin();
 		this.NextPlayer();
 
 		return winner;
 	}
 }
+let notAWinner = false;
+
 let game = new Game();
 
-game.add('Ricky');
-game.add('Gabriel');
-game.getCurrentPlayer().setInPenaltyBox();
-game.isGettingOutOfPenaltyBox = false;
-game.wasCorrectlyAnswered();
-console.log(game.players[0].getPurse());
-console.log(game.getCurrentPlayer());
+game.addPlayer('Chet');
+game.addPlayer('Pat');
+game.addPlayer('Sue');
+
+do {
+	game.roll(Math.floor(Math.random() * 6) + 1);
+
+	if (Math.floor(Math.random() * 10) == 7) {
+		notAWinner = game.wrongAnswer();
+	} else {
+		notAWinner = game.wasCorrectlyAnswered();
+	}
+} while (notAWinner);
 
 module.exports = {
 	Game
