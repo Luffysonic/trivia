@@ -6,6 +6,7 @@ class IPlayer {
 	setPlace(place) {}
 	getPurse() {}
 	setPurse(purse) {}
+	addPurse() {}
 	isInPenaltyBox() {}
 	setInPenaltyBox() {}
 	releaseFromPenaltyBox() {}
@@ -29,6 +30,9 @@ class Player extends IPlayer {
 	}
 	getPurse() {
 		return this.purse;
+	}
+	addPurse() {
+		this.purse++;
 	}
 	setPurse(purse) {
 		this.purse = purse;
@@ -93,6 +97,7 @@ class Game {
 	currentPlayerIndex = 0;
 	purses = [];
 	winningCondition = 6;
+	isGettingOutOfPenaltyBox = false;
 
 	isPlayable() {
 		return this.howManyPlayers() >= 2;
@@ -157,12 +162,14 @@ class Game {
 					' is getting out of the penalty box'
 			);
 			this.updatePlayerPosition(roll);
+			this.isGettingOutOfPenaltyBox = true;
 			return true;
 		} else {
 			console.log(
 				`${this.getCurrentPlayer().getName()}` +
 					' is not getting out of the penalty box'
 			);
+			this.isGettingOutOfPenaltyBox = false;
 			return false;
 		}
 	}
@@ -201,24 +208,41 @@ class Game {
 	}
 
 	wasCorrectlyAnswered() {
-		if (this.getCurrentPlayer().isInPenaltyBox) {
+		let winner;
+		if (this.getCurrentPlayer().isInPenaltyBox()) {
+			if (this.isGettingOutOfPenaltyBox) {
+				console.log('Answer was correct!!!!');
+				this.getCurrentPlayer().addPurse();
+				console.log(
+					`${this.getCurrentPlayer().getName()} now has ${this.getCurrentPlayer().getPurse()} Gold Coins.`
+				);
+				winner = this.didPlayerWin();
+				this.NextPlayer();
+				return winner;
+			} else {
+				this.NextPlayer();
+				return true;
+			}
+		} else {
+			console.log('Answer was correct!!!!');
+			this.getCurrentPlayer().addPurse();
+			console.log(
+				`${this.getCurrentPlayer().getName()} now has ${this.getCurrentPlayer().getPurse()} Gold Coins.`
+			);
+			winner = this.didPlayerWin();
+			this.NextPlayer();
+			return winner;
 		}
 	}
 }
-
 let game = new Game();
 
 game.add('Ricky');
 game.add('Gabriel');
-console.log(game.getCurrentPlayer().getName());
-console.log(game.NextPlayer());
-console.log(game.getCurrentPlayer().getName());
-console.log(game.NextPlayer());
-console.log(game.getCurrentPlayer().getName());
-console.log(game.NextPlayer());
-console.log(game.getCurrentPlayer().getName());
-console.log(game.NextPlayer());
-console.log(game.getCurrentPlayer().getName());
+game.getCurrentPlayer().setInPenaltyBox();
+game.isGettingOutOfPenaltyBox = true;
+game.wasCorrectlyAnswered();
+console.log(game.players[0].getPurse());
 
 module.exports = {
 	Player,

@@ -149,14 +149,14 @@ describe('Test Game', function () {
 		category = gametest.getCategory();
 		expect(category).toBe('Rock');
 	});
-	it('Vérification que le joueur gagné à 6 purses', function () {
+	it('Vérification que le joueur a gagné à 6 purses', function () {
 		let gametest = new game.Game();
 		gametest.add('Gabriel');
 		gametest.getCurrentPlayer().setPurse(6);
 		let Win = gametest.didPlayerWin();
 		expect(Win).toBe(true);
 	});
-	it("Vérification que le joueur n'a gagné à 4 purses", function () {
+	it("Vérification que le joueur n'a pas gagné à 4 purses", function () {
 		let gametest = new game.Game();
 		gametest.add('Gabriel');
 		gametest.getCurrentPlayer().setPurse(4);
@@ -209,5 +209,81 @@ describe('Test Game', function () {
 		gametest.wrongAnswer();
 		let currentPlayerName = gametest.getCurrentPlayer().getName();
 		expect(currentPlayerName).toBe('Gabriel');
+	});
+
+	it("Vérification si le joueur est dans la penalty box et qu'il est en train de sortir de la penalty box répond correctement +1 coins", function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.getCurrentPlayer().setInPenaltyBox();
+		gametest.isGettingOutOfPenaltyBox = true;
+		gametest.wasCorrectlyAnswered();
+		let currentPlayerCoin = gametest.getCurrentPlayer().getPurse();
+		expect(currentPlayerCoin).toBe(1);
+	});
+
+	it("Vérification si le joueur est dans la penalty box et qu'il n' est pas en train de sortir de la penalty box répond correctement on passe", function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setInPenaltyBox();
+		gametest.isGettingOutOfPenaltyBox = false;
+		gametest.wasCorrectlyAnswered();
+		let currentPlayerName = gametest.getCurrentPlayer().getName();
+		expect(currentPlayerName).toBe('Gabriel');
+	});
+
+	it("Vérification si le joueur est dans la penalty box et qu'il n' est pas en train de sortir de la penalty box répond correctement il n'a pas de coin supplémentaire", function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setInPenaltyBox();
+		gametest.isGettingOutOfPenaltyBox = false;
+		gametest.wasCorrectlyAnswered();
+		let PreceedPlayerCoin = gametest.players[0].getPurse();
+		expect(PreceedPlayerCoin).toBe(0);
+	});
+
+	it("Vérification si le joueur est dans la penalty box et qu'il est en train de sortir de la penalty box répond correctement et a gagné", function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setInPenaltyBox();
+		gametest.isGettingOutOfPenaltyBox = false;
+		gametest.getCurrentPlayer().setPurse(5);
+		let Win = gametest.wasCorrectlyAnswered();
+
+		expect(Win).toBe(true);
+	});
+
+	it("Vérification si le joueur est dans la penalty box et qu'il est en train de sortir de la penalty box répond correctement et n'a pas gagné", function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setInPenaltyBox();
+		gametest.isGettingOutOfPenaltyBox = true;
+		gametest.getCurrentPlayer().setPurse(3);
+		let Win = gametest.wasCorrectlyAnswered();
+
+		expect(Win).toBe(false);
+	});
+
+	it("Vérification si le joueur répond correctement mais n'a pas encore gagné", function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setPurse(3);
+		let Win = gametest.wasCorrectlyAnswered();
+
+		expect(Win).toBe(false);
+	});
+
+	it('Vérification si le joueur répond correctement mais a gagné', function () {
+		let gametest = new game.Game();
+		gametest.add('Ricky');
+		gametest.add('Gabriel');
+		gametest.getCurrentPlayer().setPurse(5);
+		let Win = gametest.wasCorrectlyAnswered();
+
+		expect(Win).toBe(true);
 	});
 });
