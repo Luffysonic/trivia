@@ -1,12 +1,11 @@
-Test with node.js
-=====================
+# Test with node.js
 
 Install the jasmine-node plugin from https://github.com/mhevery/jasmine-node
 
-	npm install jasmine-node -g
+    npm install jasmine-node -g
 
 And execute:
 
-	jasmine-node .
+    jasmine-node .
 
-Any test source matching the pattern *.spec.js will be executed.
+Any test source matching the pattern \*.spec.js will be executed.
