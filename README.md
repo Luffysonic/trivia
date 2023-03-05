@@ -46,6 +46,17 @@ pour lancer l'application.
 2. Refacto le code et supprimer les codes Smells
 3. Avoir des JDD pertinents
 
+## Features
+
+- Gestion du déroulement du jeu
+- Gestion des Catégories
+- Gestion et ajout des joueurs pour une game
+- Gestion des bonnes / Mauvaises réponses
+- Gestion de l'avancement des joueurs
+- Gestion de l'obtention des pièces 
+- Gestion de la mise en case pénalité
+- Gestion des questions
+
 ## Clean Code
 
 1. Nettoyage des conditions avec l'utilisation de regroupement.
