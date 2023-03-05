@@ -6,7 +6,7 @@ Le but de celui-ci est d'avoir des joueurs qui répondent à des questions de cu
 
 A chaque question bien répondue, le joueur peut obtenir une pièce dans sa bourse en plus.
 
-Le joueur peut sortir de la penalty box en répondant juste à une question.
+Le joueur peut sortir de la penalty box en lançant un dès et en obtenant un chiffre impair.
 
 A chaque mauvaise réponse, le joueur est envoyé dans la penalty box.
 
